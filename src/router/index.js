@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Event from "@/views/Event.vue";
 
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -25,3 +26,4 @@ const router = new VueRouter({
 });
 
 export default router;
+
