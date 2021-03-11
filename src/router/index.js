@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import Event from "@/views/Event.vue";
 
-
 Vue.use(VueRouter);
 
 const routes = [
@@ -13,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-   path:"/event/:eventNO",
+   path: "/event/:eventNo",
    name:"Event",
    component: Event
   }

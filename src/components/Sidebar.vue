@@ -10,22 +10,25 @@
 
             <v-list-item-group color="primary">
                 <v-list rounded>
-                    <v-list-item>
+                    <v-list-item @click="switchCreateTaskDialog(true)">
                         <v-list-item-content>
                             <v-list-item-title>
                                 <v-icon>mdi-plus</v-icon>
-                                アイテムボタン
+                                タスクを追加
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
     
-                    <v-list-item v-for="(event,index) in events" :key="index">
+                    <v-list-item v-for="(event,index) in events" :key="index" @click="toEventPage(event.eventNo)">
                         <v-list-item-content>
                             <v-list-item-title>
-                                {{event.taskNo}}:{{event.name}}
+                                {{event.eventNo}}:{{event.name}}
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
+    
+
+
                     <v-divider></v-divider>
                 </v-list>
             </v-list-item-group>
@@ -46,14 +49,20 @@ export default {
             set(value) {
                 this.$store.dispatch("switchSideBar", value);
             }
-        }
-    },
-    event: {
+        },
+    events: {
         get() {
             return this.$store.state.event.events;
+            }
         }
-
     },
-    methods: {}
+    methods: {
+      switchCreateTaskDialog(value){
+        this.$store.dispatch("switchCreateTaskDialog",value)
+      },
+      toEventPage(eventNo){
+        this.$router.push(`/event/${eventNo}`)
+      }
+    }
 };
 </script> 
