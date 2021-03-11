@@ -1,24 +1,40 @@
 <template>
- <div>
-<router-link to="/">ホームへ戻る</router-link>
-<router-link to="/event/1">イベント1</router-link>
-<router-link to="/event/2">イベント2</router-link>
-<router-link to="/event/3">イベント3</router-link>
-<h1>イベントナンバー{{ eventNO }}</h1>
- </div>
+    <div>
+        <v-card class="mx-auto mt-5" max-width="344">
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <v-list-item-title class="headline mb-1">
+                        {{event.name}}
+                    </v-list-item-title>
+                    <v-list-item-subtitle class="my-5">
+                        詳細
+                    </v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                        {{ event.detail }}
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+            <v-card-actions>
+                <v-chip class="ma-2" :color="event.color">
+                    {{event.color}}
+                </v-chip>
+                <router-link to="/">ホームへ戻る</router-link>
+            </v-card-actions>
+        </v-card>
+    </div>
 </template>
 
 
 <script>
-    export default{
-        name:"Event",
-        components:{},
-        computed:{
-            eventNO:{
-                get(){
-                    return this.$route.params["eventNO"]; 
-                }
+export default {
+    name: "Event",
+    components: {},
+    computed: {
+        event: {
+            get() {
+                return this.$store.getters["event/event"](this.$route.params["eventNo"]);
             }
         }
     }
+}
 </script>
